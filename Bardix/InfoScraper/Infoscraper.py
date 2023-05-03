@@ -9,7 +9,7 @@ from msedge.selenium_tools import Edge, EdgeOptions
 from selenium.webdriver.common.keys import Keys
 
 global person_name
-person_name = "The Rock"
+person_name = input('Enter the name of the person you want to search: ')
 
 def askperplexity1():
     edge_options = EdgeOptions()
@@ -56,9 +56,13 @@ def twitter_followers_scraper():
     wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/div[3]/div/section/div/div/div[3]/div/div/div/div/div[2]/div[1]/div[1]/div/div[1]/a/div/div[1]/span/span[1]')))
     driver.find_element("xpath", '/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/div[3]/div/section/div/div/div[3]/div/div/div/div/div[2]/div[1]/div[1]/div/div[1]/a/div/div[1]/span/span[1]').click()
     time.sleep(1)
+    twitter_person_name = driver.find_element("xpath", '/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div[1]/div/div[1]/div/div/span/span[1]')
+    final_twitter_name = twitter_person_name.text
+    time.sleep(1) 
     twitter_followers = driver.find_element("xpath", '/html/body/div[1]/div/div/div[2]/main/div/div/div/div[1]/div/div[3]/div/div/div/div/div[5]/div[2]/a')
     final_twitter_followers = twitter_followers.text
-    print(final_twitter_followers)
+    print(final_twitter_name, 'has', final_twitter_followers, 'on Twitter')
+    driver.quit()
 
 
 def main():
