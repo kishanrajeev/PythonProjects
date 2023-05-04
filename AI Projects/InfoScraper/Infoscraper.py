@@ -14,8 +14,9 @@ global person_name
 person_name = input('Enter the name of the person you want to search: ')
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 global Headless
-Headless = True
-
+Headless = False
+global driver_path
+driver_path = "C:\\Users\\kisha\\Documents\\msedgedriver.exe"
 def instagramidperplexity():
     global finalinstahandle
     edge_options = EdgeOptions()
@@ -26,13 +27,12 @@ def instagramidperplexity():
         edge_options.add_argument("--headless")  
     elif Headless == False:
         pass
-    driver_path = "C:\\Users\\kisha\\OneDrive\\Kishan All\\Documents\\msedgedriver.exe"
     driver = Edge(executable_path=driver_path, options=edge_options)
     perplexityprompt = "Paste only the instagram account handle. Do not even inclde the @ For: "+person_name
     driver.get("https://www.perplexity.ai/?q="+perplexityprompt)
     wait = WebDriverWait(driver, 10)
     wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div/main/div/div/div[2]/div/div/div[2]/div/div/div[2]/div/div/div/div[1]/div/div[2]/div[2]/div/div[1]/div')))
-    time.sleep(3)
+    time.sleep(5)
     instahandleraw = driver.find_element("xpath", '/html/body/div/main/div/div/div[2]/div/div/div[2]/div/div/div[2]/div/div/div/div[1]/div/div[2]/div[2]/div/div[1]/div')
     instahandle = instahandleraw.text
     finalinstahandle = instahandle
@@ -48,7 +48,6 @@ def youtubechannelperplexity():
         edge_options.add_argument("--headless")  
     elif Headless == False:
         pass  
-    driver_path = "C:\\Users\\kisha\\OneDrive\\Kishan All\\Documents\\msedgedriver.exe"
     driver = Edge(executable_path=driver_path, options=edge_options)
     perplexityprompt = "Paste only the youtube channel url. Use /user/ not /c/ For: "+person_name
     driver.get("https://www.perplexity.ai/?q="+perplexityprompt)
@@ -72,7 +71,6 @@ def twitteridperplexity():
         edge_options.add_argument("--headless")  
     elif Headless == False:
         pass  
-    driver_path = "C:\\Users\\kisha\\OneDrive\\Kishan All\\Documents\\msedgedriver.exe"
     driver = Edge(executable_path=driver_path, options=edge_options)
     perplexityprompt = "Paste only the twitter account url. Include https For: "+person_name
     driver.get("https://www.perplexity.ai/?q="+perplexityprompt)
@@ -95,7 +93,6 @@ def emailandphoneperplexity():
         edge_options.add_argument("--headless")  
     elif Headless == False:
         pass  
-    driver_path = "C:\\Users\\kisha\\OneDrive\\Kishan All\\Documents\\msedgedriver.exe"
     perplexityprompt = "Business Email and Phone number for the person i give you. Only answer with the both of these in this format. Email: Phone: Do not say anything else. Just the phone number and email. Person: "+person_name
     driver = Edge(executable_path=driver_path, options=edge_options)
     driver.get("https://www.perplexity.ai/?q="+perplexityprompt)
@@ -118,7 +115,6 @@ def twitter_followers_scraper():
         edge_options.add_argument("--headless")  
     elif Headless == False:
         pass  
-    driver_path = "C:\\Users\\kisha\\OneDrive\\Kishan All\\Documents\\msedgedriver.exe"
     driver = Edge(executable_path=driver_path, options=edge_options)
     driver.get(finaltwitterid)
     wait = WebDriverWait(driver, 10)
@@ -142,7 +138,6 @@ def instagram_followers_scraper():
         edge_options.add_argument("--headless")  
     elif Headless == False:
         pass  
-    driver_path = "C:\\Users\\kisha\\OneDrive\\Kishan All\\Documents\\msedgedriver.exe"
     driver = Edge(executable_path=driver_path, options=edge_options)
     driver.get('https://instagram.com/'+finalinstahandle)
     wait = WebDriverWait(driver, 10)
@@ -165,7 +160,6 @@ def youtube_followers_scraper():
         edge_options.add_argument("--headless")  
     elif Headless == False:
         pass  
-    driver_path = "C:\\Users\\kisha\\OneDrive\\Kishan All\\Documents\\msedgedriver.exe"
     driver = Edge(executable_path=driver_path, options=edge_options)
     driver.get(finalyoutubeurl)
     wait = WebDriverWait(driver, 10)
@@ -178,9 +172,6 @@ def youtube_followers_scraper():
     final_youtube_followers = youtube_followers
     print(final_youtube_name, 'has', final_youtube_followers, 'on Youtube')
     driver.quit()
-
-
-
 
 
 def main():
